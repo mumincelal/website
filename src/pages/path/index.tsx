@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 import { GUTTER, PAD_Y, Screen, SectionTitle } from "@/components/primitives";
-import { cn } from "@/utils/cn";
-import { PATH } from "@/utils/content";
-import { rise } from "@/utils/motion";
+import { PATH } from "@/helpers/content.helper";
+import { rise } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 export function PathPage() {
   return (
@@ -15,7 +15,7 @@ export function PathPage() {
       )}>
       <motion.div {...rise()} className="flex items-end justify-between gap-6">
         <SectionTitle>Path</SectionTitle>
-        <span className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
+        <span className="font-mono text-eyebrow tracking-label-wide text-muted-foreground uppercase">
           {PATH.label}
         </span>
       </motion.div>
@@ -27,7 +27,7 @@ export function PathPage() {
             className="grid grid-cols-1 items-baseline gap-1.5 border-t py-[clamp(9px,1.7vh,18px)] transition-colors duration-300 last:border-b hover:bg-accent sm:grid-cols-[clamp(104px,11vw,128px)_minmax(0,1fr)_minmax(0,1.15fr)] sm:gap-5">
             <span
               className={cn(
-                "font-mono text-[11px] tracking-[0.1em] whitespace-nowrap",
+                "font-mono text-eyebrow tracking-widest whitespace-nowrap",
                 i === 0 ? "text-primary" : "text-muted-foreground"
               )}>
               {e.when}
@@ -35,7 +35,7 @@ export function PathPage() {
             <span className="text-[clamp(15px,1.55vw,19px)] font-semibold tracking-[-0.02em]">
               {e.title}
             </span>
-            <span className="text-[13px] leading-normal text-pretty text-muted-foreground">
+            <span className="text-body-sm leading-normal text-pretty text-muted-foreground">
               {e.text}
             </span>
           </motion.div>

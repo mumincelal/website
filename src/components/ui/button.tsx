@@ -1,7 +1,7 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap font-mono transition-[color,background-color,border-color] duration-300 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -19,9 +19,9 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline"
       },
       size: {
-        default: "px-[9px] py-[5px] text-[11px] tracking-normal",
-        sm: "px-[11px] py-[6px] text-[10px] tracking-[0.12em]",
-        lg: "min-h-11 px-[clamp(15px,1.5vw,21px)] py-[clamp(13px,1.2vh,15px)] text-[10px] tracking-[0.16em] uppercase",
+        default: "px-2.25 py-1.25 text-eyebrow tracking-normal",
+        sm: "px-2.75 py-1.5 text-label tracking-label",
+        lg: "min-h-11 px-[clamp(15px,1.5vw,21px)] py-[clamp(13px,1.2vh,15px)] text-label tracking-[0.16em] uppercase",
         icon: "size-9",
         /** Bare text control; its tap area grows invisibly on touch screens. */
         none: "p-0 pointer-coarse:hit-area"

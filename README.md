@@ -1,4 +1,4 @@
-# Nadia Kovač — Portfolio
+# Mümin Celal Pinar — Portfolio
 
 A full-screen, no-scroll portfolio built with **Vite + React + TypeScript**, styled with **Tailwind CSS v4** and **shadcn/ui** on **Base UI** primitives, animated with **Motion**. All copy lives in **Markdown** files under [`src/content/`](src/content).
 

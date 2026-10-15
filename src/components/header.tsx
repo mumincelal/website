@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/cn";
-import { pad, SITE } from "@/utils/content";
-import { SECTIONS } from "@/utils/nav";
+import { pad, SITE } from "@/helpers/content.helper";
+import { SECTIONS } from "@/helpers/nav.helper";
+import { cn } from "@/lib/utils";
 
 interface Props {
   active: number;
@@ -26,12 +26,12 @@ export function Header({ active, onGo, theme, onToggleTheme }: Props) {
   }, [active]);
 
   return (
-    <header className="relative z-2 flex items-stretch justify-between gap-2.5 px-4 sm:gap-[clamp(10px,1.6vw,26px)] sm:px-[22px]">
+    <header className="relative z-2 flex items-stretch justify-between gap-2.5 px-4 sm:gap-[clamp(10px,1.6vw,26px)] sm:px-5.5">
       <div className="flex shrink-0 flex-col justify-center gap-0.5">
-        <span className="text-[15px] leading-[1.1] font-extrabold tracking-[-0.01em]">
+        <span className="text-emphasis leading-compact font-extrabold tracking-subtle">
           {SITE.name}
         </span>
-        <span className="hidden font-mono text-[9px] leading-[1.1] tracking-[0.12em] text-muted-foreground uppercase sm:block">
+        <span className="hidden font-mono text-micro leading-compact tracking-label text-muted-foreground uppercase sm:block">
           {SITE.role}
         </span>
       </div>
@@ -49,8 +49,8 @@ export function Header({ active, onGo, theme, onToggleTheme }: Props) {
               onClick={() => onGo(i)}
               aria-current={isActive ? "page" : undefined}
               aria-label={label}
-              className="group flex shrink-0 items-center justify-center gap-[5px] px-[5px] whitespace-nowrap sm:gap-[7px] sm:px-[clamp(7px,1vw,16px)] md:min-w-0 md:shrink">
-              <span className="font-mono text-[10px] tracking-[0.08em] text-faint">
+              className="group flex shrink-0 items-center justify-center gap-1.25 px-1.25 whitespace-nowrap sm:gap-1.75 sm:px-[clamp(7px,1vw,16px)] md:min-w-0 md:shrink">
+              <span className="font-mono text-label tracking-[0.08em] text-faint">
                 {pad(i + 1)}
               </span>
               {/* Label rolls up inside a mask; a second copy rises into its place.
@@ -58,22 +58,22 @@ export function Header({ active, onGo, theme, onToggleTheme }: Props) {
               <span
                 aria-hidden="true"
                 className={cn(
-                  "h-[1.2em] overflow-hidden text-sm tracking-[-0.01em]",
+                  "h-roll overflow-hidden text-sm tracking-subtle",
                   isActive
                     ? "block font-semibold"
                     : "hidden font-normal md:block"
                 )}>
-                <span className="flex flex-col transition-transform duration-500 ease-expo group-hover:-translate-y-[1.2em]">
+                <span className="flex flex-col transition-transform duration-500 ease-expo group-hover:-translate-y-roll">
                   <span
                     className={cn(
-                      "h-[1.2em] leading-[1.2em]",
+                      "h-roll leading-roll",
                       isActive ? "text-primary" : "text-muted-foreground"
                     )}>
                     {label}
                   </span>
                   <span
                     className={cn(
-                      "h-[1.2em] leading-[1.2em]",
+                      "h-roll leading-roll",
                       isActive ? "text-primary" : "text-foreground"
                     )}>
                     {label}
@@ -90,10 +90,10 @@ export function Header({ active, onGo, theme, onToggleTheme }: Props) {
         size="sm"
         onClick={onToggleTheme}
         aria-label="Toggle colour theme"
-        className="gap-2 self-center p-2 uppercase sm:px-[11px] sm:py-[7px]">
+        className="gap-2 self-center p-2 uppercase sm:px-2.75 sm:py-1.75">
         <i
           aria-hidden="true"
-          className="size-[9px] rounded-full border border-current bg-[linear-gradient(90deg,currentColor_0_50%,transparent_50%_100%)]"
+          className="size-2.25 rounded-full border border-current bg-[linear-gradient(90deg,currentColor_0_50%,transparent_50%_100%)]"
         />
         <span className="hidden sm:inline">
           {theme === "dark" ? "Light" : "Dark"}

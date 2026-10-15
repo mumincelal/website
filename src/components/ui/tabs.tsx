@@ -1,7 +1,7 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 type WithClassName<P> = Omit<P, "className"> & { className?: string };
 
@@ -21,7 +21,7 @@ function Tabs({
 const tabsListVariants = cva("inline-flex w-fit items-center justify-center", {
   variants: {
     variant: {
-      default: "h-9 rounded-lg bg-muted p-[3px] text-muted-foreground",
+      default: "h-9 rounded-lg bg-muted p-0.75 text-muted-foreground",
       /** Bare row of indices with an accent underline on the active one. */
       line: "gap-[clamp(8px,1vw,16px)]"
     }
@@ -51,7 +51,7 @@ const tabsTriggerVariants = cva(
       variant: {
         default:
           "h-[calc(100%-1px)] flex-1 gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium text-foreground transition-[color,box-shadow] data-active:bg-background data-active:shadow-sm",
-        line: "border-b border-transparent pb-[3px] pointer-coarse:hit-area pointer-coarse:min-w-6 font-mono text-[10px] tracking-[0.14em] text-faint uppercase transition-[color,border-color] duration-300 hover:text-primary data-active:border-primary data-active:text-primary"
+        line: "border-b border-transparent pb-0.75 pointer-coarse:hit-area pointer-coarse:min-w-6 font-mono text-label tracking-label-wide text-faint uppercase transition-[color,border-color] duration-300 hover:text-primary data-active:border-primary data-active:text-primary"
       }
     },
     defaultVariants: { variant: "default" }

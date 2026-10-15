@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { DetailBar, GUTTER, Screen } from "@/components/primitives";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/utils/cn";
-import { pad, WORKS } from "@/utils/content";
-import { fade, rise } from "@/utils/motion";
+import { pad, WORKS } from "@/helpers/content.helper";
+import { fade, rise } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 interface Props {
   index: number;
@@ -46,18 +46,18 @@ function Sketch({ kind }: { kind: number }) {
             style={{ gridTemplateColumns: `${w}% 1fr` }}>
             <i
               className={cn(
-                "h-[min(8px,100%)]",
+                "h-sketch-bar",
                 i === LIST_HOT ? "bg-primary" : "bg-stripe"
               )}
             />
-            <i className="h-[min(8px,100%)] bg-stripe opacity-50" />
+            <i className="h-sketch-bar bg-stripe opacity-50" />
           </div>
         ))}
       </div>
     );
   }
   return (
-    <div className="relative flex size-full items-end gap-[clamp(3px,0.5vw,7px)]">
+    <div className="relative flex size-full items-end gap-bars">
       {[14, 44, 74].map((top) => (
         <b
           key={top}
@@ -100,7 +100,7 @@ export function WorkDetailPage({
     <Screen
       aria-label={`${w.title} case study`}
       className={cn(
-        "grid grid-cols-1 content-start gap-[clamp(10px,1.8vh,22px)] pt-[clamp(14px,2.6vh,34px)] pb-[clamp(56px,9vh,84px)] md:grid-rows-[auto_minmax(0,3fr)_auto_minmax(0,1fr)] md:content-normal",
+        "grid grid-cols-1 content-start gap-[clamp(10px,1.8vh,22px)] pt-[clamp(14px,2.6vh,34px)] pb-screen-end md:grid-rows-[auto_minmax(0,3fr)_auto_minmax(0,1fr)] md:content-normal",
         GUTTER
       )}>
       <DetailBar
@@ -151,7 +151,7 @@ export function WorkDetailPage({
         <div className="flex min-h-0 items-end justify-between gap-[clamp(16px,3vw,44px)] border-t px-[clamp(14px,2.2vw,30px)] py-[clamp(8px,1.5vh,20px)]">
           <div className="flex min-w-0 flex-col gap-[clamp(3px,0.6vh,9px)]">
             <span className="mono-eyebrow">{w.kicker}</span>
-            <h2 className="text-[min(7.2vw,clamp(26px,7.2vh,118px))] leading-[0.82] font-extrabold tracking-[-0.05em] text-balance">
+            <h2 className="text-[min(7.2vw,clamp(26px,7.2vh,118px))] leading-[0.82] font-extrabold tracking-tighter text-balance">
               {w.title}
             </h2>
           </div>
@@ -167,7 +167,7 @@ export function WorkDetailPage({
         {...rise(0.1)}
         className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] gap-[clamp(14px,2.4vw,36px)] border-t pt-[clamp(8px,1.4vh,16px)]">
         {meta.map(([k, v]) => (
-          <div key={k} className="flex flex-col gap-[5px]">
+          <div key={k} className="flex flex-col gap-1.25">
             <span className="mono-label">{k}</span>
             <span className="text-sm text-fg2">{v}</span>
           </div>
@@ -182,15 +182,15 @@ export function WorkDetailPage({
           // biome-ignore lint/security/noDangerouslySetInnerHtml: build-time HTML from our own src/content Markdown
           dangerouslySetInnerHTML={{ __html: w.summaryHtml }}
         />
-        <div className="grid grid-cols-1 gap-[clamp(14px,2vw,28px)] sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-cluster sm:grid-cols-3">
           {w.points.map((p, i) => (
             <div
               key={p}
-              className="flex flex-col gap-[7px] border-t pt-[clamp(7px,1.2vh,14px)]">
-              <span className="font-mono text-[10px] tracking-[0.12em] text-primary">
+              className="flex flex-col gap-1.75 border-t pt-[clamp(7px,1.2vh,14px)]">
+              <span className="font-mono text-label tracking-label text-primary">
                 {pad(i + 1)}
               </span>
-              <span className="text-[13px] leading-[1.45] text-pretty text-muted-foreground">
+              <span className="text-body-sm leading-copy text-pretty text-muted-foreground">
                 {p}
               </span>
             </div>

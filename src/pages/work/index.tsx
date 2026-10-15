@@ -1,9 +1,9 @@
 import { motion, type PanInfo, useDragControls } from "motion/react";
 import { GUTTER, Screen, SectionTitle } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/cn";
-import { ARCHIVE, pad, WORKS, type Work } from "@/utils/content";
-import { EASE, rise, slideIn } from "@/utils/motion";
+import { ARCHIVE, pad, WORKS, type Work } from "@/helpers/content.helper";
+import { EASE, rise, slideIn } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 interface Props {
   index: number;
@@ -66,7 +66,7 @@ export function WorkPage({
           GUTTER
         )}>
         <SectionTitle>Work</SectionTitle>
-        <div className="flex items-center gap-[clamp(12px,1.5vw,22px)] font-mono text-[10px] tracking-[0.12em] uppercase">
+        <div className="flex items-center gap-[clamp(12px,1.5vw,22px)] font-mono text-label tracking-label uppercase">
           <span className="text-faint">
             {pad(index + 1)} / {pad(WORKS.length)}
           </span>
@@ -91,7 +91,7 @@ export function WorkPage({
           <Button
             variant="ghost"
             size="none"
-            className="text-[10px] tracking-[0.12em]"
+            className="text-label tracking-label"
             onClick={onOpenAll}>
             <span className="hidden md:inline">
               All works ({pad(ARCHIVE.length)}) →
@@ -103,11 +103,11 @@ export function WorkPage({
 
       <div className="grid md:min-h-0 grid-cols-1 border-t md:grid-cols-[clamp(102px,13vw,206px)_minmax(0,1fr)_clamp(192px,22vw,340px)] md:grid-rows-[minmax(0,1fr)]">
         {/* Rail: index numeral + progress dots */}
-        <div className="flex md:min-h-0 items-center justify-between gap-[clamp(12px,2vh,26px)] px-[clamp(20px,5vw,26px)] pt-[clamp(12px,3vw,20px)] md:flex-col md:items-start md:px-[clamp(18px,2.4vw,34px)] md:py-[clamp(14px,2.2vh,28px)]">
+        <div className="flex md:min-h-0 items-center justify-between gap-[clamp(12px,2vh,26px)] px-panel-x pt-[clamp(12px,3vw,20px)] md:flex-col md:items-start md:px-panel-x-md md:py-panel-y-md">
           <motion.div
             key={`n${index}`}
             {...enter}
-            className="text-[clamp(46px,7.4vw,128px)] leading-[0.8] font-extrabold tracking-[-0.06em]">
+            className="text-[clamp(46px,7.4vw,128px)] leading-numeral font-extrabold tracking-[-0.06em]">
             {pad(index + 1)}
           </motion.div>
           <div className="flex items-center gap-[clamp(6px,0.8vw,9px)] pointer-coarse:gap-0">
@@ -118,7 +118,7 @@ export function WorkPage({
                 onClick={() => onGo(i)}
                 aria-label={`Project ${i + 1}: ${x.title}`}
                 aria-current={i === index ? "true" : undefined}
-                className="flex items-center py-3.5 pointer-coarse:px-[7px]">
+                className="flex items-center py-3.5 pointer-coarse:px-1.75">
                 <motion.span
                   initial={false}
                   animate={{ width: i === index ? 28 : 10 }}
@@ -150,19 +150,19 @@ export function WorkPage({
               key={`s${index}`}
               {...enter}
               className="grid aspect-[4/3] w-full grid-rows-[auto_minmax(0,1fr)] border bg-background md:aspect-[16/10]">
-              <div className="flex items-center justify-between gap-3 border-b px-[clamp(11px,1.3vw,19px)] py-[clamp(9px,1.1vw,15px)] font-mono text-[9.5px] tracking-[0.14em] text-faint uppercase">
+              <div className="flex items-center justify-between gap-3 border-b px-[clamp(11px,1.3vw,19px)] py-[clamp(9px,1.1vw,15px)] font-mono text-tag tracking-label-wide text-faint uppercase">
                 <span className="min-w-0 truncate">{w.shots[0]}</span>
                 <span className="shrink-0">{w.year}</span>
               </div>
               <div className="grid min-h-0 grid-cols-1 gap-[clamp(14px,1.8vw,30px)] p-[clamp(14px,1.9vw,30px)] sm:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
                 <div className="flex min-h-0 flex-col justify-center gap-[clamp(7px,1.1vh,13px)]">
-                  <i className="block h-[clamp(10px,1.7vh,17px)] w-[74%] bg-stripe" />
-                  <i className="block h-[clamp(10px,1.7vh,17px)] w-[52%] bg-primary" />
-                  <i className="block h-[5px] w-[88%] bg-stripe opacity-65" />
-                  <i className="block h-[5px] w-[66%] bg-stripe opacity-65" />
-                  <i className="block h-[5px] w-[78%] bg-stripe opacity-65" />
+                  <i className="block h-sketch-line w-[74%] bg-stripe" />
+                  <i className="block h-sketch-line w-[52%] bg-primary" />
+                  <i className="block h-1.25 w-[88%] bg-stripe opacity-65" />
+                  <i className="block h-1.25 w-[66%] bg-stripe opacity-65" />
+                  <i className="block h-1.25 w-[78%] bg-stripe opacity-65" />
                 </div>
-                <div className="flex min-h-0 items-end gap-[clamp(3px,0.5vw,7px)]">
+                <div className="flex min-h-0 items-end gap-bars">
                   {barsFor(w).map((h, i) => (
                     <i
                       // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length decorative bars; position is the identity
@@ -181,15 +181,15 @@ export function WorkPage({
         </div>
 
         {/* Text: name, kicker, summary, call to action */}
-        <div className="flex md:min-h-0 flex-col justify-between gap-[clamp(18px,3.2vh,44px)] px-[clamp(20px,5vw,26px)] pt-[clamp(16px,4vw,24px)] pb-[clamp(22px,6vw,32px)] md:px-[clamp(18px,2.4vw,34px)] md:py-[clamp(14px,2.2vh,28px)]">
+        <div className="flex md:min-h-0 flex-col justify-between gap-[clamp(18px,3.2vh,44px)] px-panel-x pt-[clamp(16px,4vw,24px)] pb-[clamp(22px,6vw,32px)] md:px-panel-x-md md:py-panel-y-md">
           <motion.div
             key={`t${index}`}
             {...enter}
             className="flex flex-col gap-[clamp(6px,0.9vh,11px)]">
-            <h3 className="text-[clamp(28px,2.9vw,46px)] leading-[0.9] font-extrabold tracking-[-0.04em] text-balance">
+            <h3 className="text-[clamp(28px,2.9vw,46px)] leading-display font-extrabold tracking-display text-balance">
               {w.title}
             </h3>
-            <span className="font-mono text-[10px] tracking-[0.14em] text-primary uppercase">
+            <span className="font-mono text-label tracking-label-wide text-primary uppercase">
               {w.kicker}
             </span>
           </motion.div>
@@ -207,7 +207,7 @@ export function WorkPage({
             onClick={() => onOpen(index)}>
             View project
           </Button>
-          <span className="text-center font-mono text-[9px] tracking-[0.18em] text-faint uppercase md:hidden">
+          <span className="text-center font-mono text-micro tracking-[0.18em] text-faint uppercase md:hidden">
             Swipe to move between projects
           </span>
         </div>

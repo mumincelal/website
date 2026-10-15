@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 import { GUTTER, PAD_Y_STATEMENT, Rule, Screen } from "@/components/primitives";
-import { cn } from "@/utils/cn";
-import { SITE } from "@/utils/content";
-import { fade, maskUp, rise } from "@/utils/motion";
+import { SITE } from "@/helpers/content.helper";
+import { fade, maskUp, rise } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 export function ContactPage() {
   const { eyebrow, links } = SITE.contact;
@@ -10,7 +10,7 @@ export function ContactPage() {
     <Screen
       aria-label="Contact"
       className={cn(
-        "flex flex-col justify-center-safe gap-[30px]",
+        "flex flex-col justify-center-safe gap-7.5",
         GUTTER,
         PAD_Y_STATEMENT
       )}>
@@ -19,7 +19,7 @@ export function ContactPage() {
       </motion.div>
       <a
         href={`mailto:${SITE.email}`}
-        className="block overflow-hidden pb-[0.05em] text-[clamp(28px,4.9vw,84px)] leading-[0.95] font-extrabold tracking-[-0.05em] wrap-anywhere text-foreground transition-colors duration-300 hover:text-primary">
+        className="block overflow-hidden pb-[0.05em] text-[clamp(28px,4.9vw,84px)] leading-title font-extrabold tracking-tighter wrap-anywhere text-foreground transition-colors duration-300 hover:text-primary">
         <motion.span {...maskUp(0.08)} className="block">
           {SITE.email}
         </motion.span>
@@ -27,7 +27,7 @@ export function ContactPage() {
       <Rule delay={0.18} />
       <motion.div
         {...rise(0.26)}
-        className="flex flex-wrap gap-x-[34px] gap-y-3.5 font-mono text-xs tracking-[0.12em] uppercase">
+        className="flex flex-wrap gap-x-8.5 gap-y-3.5 font-mono text-xs tracking-label uppercase">
         {links.map((l) => (
           <a
             key={l.label}

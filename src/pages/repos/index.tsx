@@ -6,9 +6,9 @@ import {
   IndexTitle,
   Screen
 } from "@/components/primitives";
-import { cn } from "@/utils/cn";
-import { pad, REPOS } from "@/utils/content";
-import { fade } from "@/utils/motion";
+import { pad, REPOS } from "@/helpers/content.helper";
+import { fade } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 interface Props {
   onOpen: (i: number) => void;
@@ -20,13 +20,13 @@ export function AllReposPage({ onOpen, onClose }: Props) {
     <Screen
       aria-label="All repos"
       className={cn(
-        "grid grid-cols-1 content-start gap-[clamp(10px,1.8vh,20px)] pt-[clamp(16px,3vh,42px)] pb-[clamp(56px,9vh,84px)] md:grid-rows-[auto_1fr] md:content-normal",
+        "grid grid-cols-1 content-start gap-index pt-screen-y pb-screen-end md:grid-rows-[auto_1fr] md:content-normal",
         GUTTER
       )}>
       <motion.div
         {...fade()}
         className="flex items-center justify-between gap-6">
-        <div className="flex flex-wrap items-baseline gap-x-[18px] gap-y-1.5">
+        <div className="flex flex-wrap items-baseline gap-x-4.5 gap-y-1.5">
           <IndexTitle>All repos</IndexTitle>
           <span className="mono-label hidden sm:inline">
             {pad(REPOS.length)} public · MIT unless noted
@@ -51,19 +51,19 @@ export function AllReposPage({ onOpen, onClose }: Props) {
               "py-[clamp(3px,0.8vh,11px)]",
               "grid-cols-[30px_minmax(0,1fr)_auto] sm:grid-cols-[clamp(26px,3.5vw,44px)_minmax(0,1.1fr)_minmax(0,1.4fr)_clamp(80px,8vw,104px)_clamp(76px,8vw,104px)]"
             )}>
-            <span className="font-mono text-[10px] tracking-[0.1em] text-faint">
+            <span className="font-mono text-label tracking-widest text-faint">
               {pad(i + 1)}
             </span>
-            <span className="truncate font-mono text-[clamp(13px,1.9vh,22px)] font-bold tracking-[-0.03em] text-foreground">
+            <span className="truncate font-mono text-[clamp(13px,1.9vh,22px)] font-bold tracking-title text-foreground">
               {r.name}
             </span>
-            <span className="hidden truncate text-[12.5px] text-muted-foreground sm:block">
+            <span className="hidden truncate text-meta text-muted-foreground sm:block">
               {r.summaryText.split(/[.,]/)[0]}
             </span>
-            <span className="font-mono text-[10px] tracking-[0.12em] whitespace-nowrap text-primary uppercase">
+            <span className="font-mono text-label tracking-label whitespace-nowrap text-primary uppercase">
               {r.stars} stars
             </span>
-            <span className="hidden text-right font-mono text-[9.5px] tracking-[0.12em] whitespace-nowrap text-faint uppercase sm:block">
+            <span className="hidden text-right font-mono text-tag tracking-label whitespace-nowrap text-faint uppercase sm:block">
               {r.license}
             </span>
           </button>

@@ -2,7 +2,7 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type * as React from "react";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 /** shadcn Card. Pass `render` (e.g. `render={<button />}`) to make a whole card a button or link. */
 function Card({

@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { DetailBar, GUTTER, PAD_Y, Screen } from "@/components/primitives";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/utils/cn";
-import { pad, REPOS } from "@/utils/content";
-import { fade, rise } from "@/utils/motion";
+import { pad, REPOS } from "@/helpers/content.helper";
+import { fade, rise } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 interface Props {
   index: number;
@@ -40,10 +40,10 @@ export function RepoDetailPage({ index, onStep, onClose }: Props) {
       <motion.div
         {...rise()}
         className="flex flex-wrap items-baseline justify-between gap-6">
-        <h2 className="font-mono text-[clamp(22px,3.4vw,52px)] leading-[0.95] font-medium tracking-[-0.03em]">
+        <h2 className="font-mono text-[clamp(22px,3.4vw,52px)] leading-title font-medium tracking-title">
           {r.name}
         </h2>
-        <span className="font-mono text-[11px] tracking-[0.14em] text-primary uppercase">
+        <span className="font-mono text-eyebrow tracking-label-wide text-primary uppercase">
           Since {r.since}
         </span>
       </motion.div>
@@ -61,10 +61,10 @@ export function RepoDetailPage({ index, onStep, onClose }: Props) {
               <div
                 key={p}
                 className="grid grid-cols-[32px_1fr] items-baseline gap-3 border-t py-[clamp(5px,1vh,12px)]">
-                <span className="font-mono text-[10px] text-primary">
+                <span className="font-mono text-label text-primary">
                   {pad(i + 1)}
                 </span>
-                <span className="text-[13px] leading-[1.45] text-pretty text-muted-foreground">
+                <span className="text-body-sm leading-copy text-pretty text-muted-foreground">
                   {p}
                 </span>
               </div>
@@ -73,8 +73,8 @@ export function RepoDetailPage({ index, onStep, onClose }: Props) {
           <Card
             render={<motion.div {...fade(0.26, 0.6)} />}
             className="shrink-0 flex-row items-center gap-2.5 px-3 py-2.5 font-mono">
-            <span className="text-[11px] text-primary">$</span>
-            <span className="truncate text-[11.5px] text-fg2">{r.install}</span>
+            <span className="text-eyebrow text-primary">$</span>
+            <span className="truncate text-code text-fg2">{r.install}</span>
           </Card>
         </div>
 
@@ -84,20 +84,20 @@ export function RepoDetailPage({ index, onStep, onClose }: Props) {
           <div className="grid grid-cols-3 gap-2.5">
             {stats.map(([k, v], i) => (
               <Card key={k} className="gap-1 p-2.5 font-mono">
-                <span className="text-[9.5px] tracking-[0.12em] text-faint uppercase">
+                <span className="text-tag tracking-label text-faint uppercase">
                   {k}
                 </span>
                 <span
                   className={cn(
                     "text-foreground",
-                    i === 2 ? "text-xs" : "text-[15px]"
+                    i === 2 ? "text-xs" : "text-emphasis"
                   )}>
                   {v}
                 </span>
               </Card>
             ))}
           </div>
-          <Card className="min-h-[180px] gap-2 overflow-hidden p-3 md:min-h-0">
+          <Card className="min-h-45 gap-2 overflow-hidden p-3 md:min-h-0">
             <div
               role="img"
               aria-label="Commit activity over the last 12 months"
@@ -111,7 +111,7 @@ export function RepoDetailPage({ index, onStep, onClose }: Props) {
                 />
               ))}
             </div>
-            <span className="font-mono text-[9.5px] tracking-[0.12em] text-faint uppercase">
+            <span className="font-mono text-tag tracking-label text-faint uppercase">
               Commits — last 12 months
             </span>
           </Card>

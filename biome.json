@@ -9,7 +9,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**"]
+    "includes": ["**", "!.agents"]
   },
   "formatter": {
     "enabled": true,

@@ -1,35 +1,34 @@
 ---
 # Identity, header, footer and the Index / Contact screens.
-name: Nadia Kovač
-role: Product engineer
-email: nadia@kovac.dev
+name: Mümin Celal Pinar
+role: Software Engineer
+email: mumincelalpinar@gmail.com
 
 index:
   eyebrow: Portfolio — 2026
   headline:
-    - Nadia Kovač
+    - Mümin Celal Pinar
     - makes fast, durable products
   facts:
-    - - Based — Lisbon
+    - - Based — Izmir, Turkey
       - Focus — Interfaces & systems
     - - Practice — Design & front-end
       - Availability — Q4 2026
 
-marquee: Available for select engagements — Product design & front-end — Remote from Lisbon
+marquee: Available for select engagements — Product design & front-end — Remote from Izmir
 
 contact:
   eyebrow: 06 — Contact
   links:
-    - { label: GitHub, href: "#" }
-    - { label: LinkedIn, href: "#" }
-    - { label: X, href: "#" }
-    - { label: Résumé, href: "#" }
+    - { label: GitHub, href: "https://github.com/mumincelal" }
+    - { label: LinkedIn, href: "https://linkedin.com/in/mumincelal" }
+    - { label: Résumé, href: "https://mumincelal.com/resume.pdf" }
 
 # Search, social and AI-engine settings (read by the SEO plugin in vite.config.ts and src/utils/meta.ts).
 seo:
-  url: https://kovac.dev
-  title: Nadia Kovač — Product engineer
-  description: Nadia Kovač is a product engineer in Lisbon who designs and builds fast, durable product interfaces end to end.
+  url: https://mumincelal.com
+  title: Mümin Celal Pinar — Software Engineer
+  description: Mümin Celal Pinar is a software engineer in Izmir who designs and builds fast, durable product interfaces end to end.
   locale: en_US
   topics:
     - Product design
@@ -37,11 +36,11 @@ seo:
     - Design systems
     - Interfaces
   location:
-    city: Lisbon
-    region: Lisbon
-    country: PT
-    latitude: 38.7223
-    longitude: -9.1393
+    city: Izmir
+    region: İzmir
+    country: TR
+    latitude: 38.4231
+    longitude: 27.1429
 ---
 
 I design and build product interfaces end to end — from the first flow sketch to the shipped component library the team maintains after I leave.

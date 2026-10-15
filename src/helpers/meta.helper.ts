@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { ABOUT, PATH, REPOS, SITE, WORKS } from "@/utils/content";
-import { S } from "@/utils/nav";
+import { ABOUT, PATH, REPOS, SITE, WORKS } from "@/helpers/content.helper";
+import { S } from "@/helpers/nav.helper";
 
 interface PageView {
   active: number;

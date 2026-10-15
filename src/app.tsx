@@ -3,6 +3,9 @@ import { Curtain } from "@/components/curtain";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Texture } from "@/components/texture";
+import { useDocumentMeta } from "@/helpers/meta.helper";
+import { S } from "@/helpers/nav.helper";
+import { usePageQuery } from "@/helpers/query.helper";
 import { AboutPage } from "@/pages/about";
 import { ContactPage } from "@/pages/contact";
 import { HomePage } from "@/pages/home";
@@ -13,9 +16,6 @@ import { RepoDetailPage } from "@/pages/repos/detail";
 import { WorkPage } from "@/pages/work";
 import { AllWorksPage } from "@/pages/works";
 import { WorkDetailPage } from "@/pages/works/detail";
-import { useDocumentMeta } from "@/utils/meta";
-import { S } from "@/utils/nav";
-import { usePageQuery } from "@/utils/query";
 
 type Theme = "dark" | "light";
 

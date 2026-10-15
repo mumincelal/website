@@ -2,9 +2,9 @@ import { motion } from "motion/react";
 import { GUTTER, PAD_Y, Screen, SectionTitle } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/utils/cn";
-import { pad, REPOS } from "@/utils/content";
-import { rise } from "@/utils/motion";
+import { pad, REPOS } from "@/helpers/content.helper";
+import { rise } from "@/helpers/motion.helper";
+import { cn } from "@/lib/utils";
 
 /** Cards show the first six; the rest live in the "All repos" index. */
 const CARD_LIMIT = 6;
@@ -34,14 +34,14 @@ export function OpenSourcePage({ onOpen, onOpenAll }: Props) {
       )}>
       <motion.div {...rise()} className="flex items-end justify-between gap-6">
         <SectionTitle>Open source</SectionTitle>
-        <div className="flex items-baseline gap-[clamp(14px,2vw,28px)] font-mono text-[11px] tracking-[0.14em] uppercase">
+        <div className="flex items-baseline gap-cluster font-mono text-eyebrow tracking-label-wide uppercase">
           <span className="hidden text-muted-foreground sm:inline">
             {count} public repos
           </span>
           <Button
             variant="ghost"
             size="none"
-            className="text-[11px] tracking-[0.12em]"
+            className="text-eyebrow tracking-label"
             onClick={onOpenAll}>
             All repos ({count}) →
           </Button>
@@ -62,7 +62,7 @@ export function OpenSourcePage({ onOpen, onOpenAll }: Props) {
             className="relative min-h-0 justify-between gap-[clamp(10px,1.8vh,26px)] overflow-hidden p-[clamp(12px,1.6vw,24px)] text-left transition-colors duration-300 hover:border-primary hover:bg-accent">
             <span
               aria-hidden="true"
-              className="text-outline pointer-events-none absolute top-1/2 left-[clamp(12px,1.6vw,24px)] -translate-y-[56%] font-mono text-[min(8vw,clamp(44px,13vh,128px))] leading-[0.8] font-bold">
+              className="text-outline pointer-events-none absolute top-1/2 left-[clamp(12px,1.6vw,24px)] -translate-y-[56%] font-mono text-[min(8vw,clamp(44px,13vh,128px))] leading-numeral font-bold">
               {pad(i + 1)}
             </span>
             <span className="mono-label relative flex items-center justify-between gap-3">
@@ -70,18 +70,18 @@ export function OpenSourcePage({ onOpen, onOpenAll }: Props) {
               <span className="sr-only">GitHub</span>
               <span
                 aria-hidden="true"
-                className="flex size-[26px] shrink-0 items-center justify-center rounded-full border text-[9px] tracking-[0.04em] text-fg2">
+                className="flex size-6.5 shrink-0 items-center justify-center rounded-full border text-micro tracking-[0.04em] text-fg2">
                 GH
               </span>
             </span>
             <span className="relative flex min-w-0 flex-col gap-[clamp(6px,1vh,13px)]">
-              <span className="truncate font-mono text-[clamp(18px,5vw,26px)] leading-[0.95] font-bold tracking-[-0.03em] text-foreground md:text-[min(2.3vw,clamp(15px,3.4vh,34px))]">
+              <span className="truncate font-mono text-[clamp(18px,5vw,26px)] leading-title font-bold tracking-title text-foreground md:text-[min(2.3vw,clamp(15px,3.4vh,34px))]">
                 {r.name}
               </span>
-              <span className="min-h-0 overflow-hidden text-[13px] leading-normal text-pretty text-muted-foreground">
+              <span className="min-h-0 overflow-hidden text-body-sm leading-normal text-pretty text-muted-foreground">
                 {teaser(r.summaryText)}
               </span>
-              <span className="flex min-w-0 items-center justify-between gap-3 border-t pt-[clamp(6px,1vh,13px)] font-mono text-[10px] tracking-[0.12em] text-primary uppercase">
+              <span className="flex min-w-0 items-center justify-between gap-3 border-t pt-[clamp(6px,1vh,13px)] font-mono text-label tracking-label text-primary uppercase">
                 <span className="truncate">
                   {r.stars} stars · {r.license}
                 </span>

@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
-import { SITE } from "@/utils/content";
-import { EASE } from "@/utils/motion";
+import { SITE } from "@/helpers/content.helper";
+import { EASE } from "@/helpers/motion.helper";
 
 const DURATION = 1.55;
 

@@ -1,7 +1,7 @@
 import { parseAsIndex, parseAsStringLiteral, useQueryStates } from "nuqs";
 import { useCallback, useMemo } from "react";
-import { REPOS, WORKS } from "@/utils/content";
-import { S, SECTION_SLUGS, SECTIONS, wrap } from "@/utils/nav";
+import { REPOS, WORKS } from "@/helpers/content.helper";
+import { S, SECTION_SLUGS, SECTIONS, wrap } from "@/helpers/nav.helper";
 
 const WORK_SLUGS = WORKS.map((w) => w.slug);
 const REPO_SLUGS = REPOS.map((r) => r.slug);
