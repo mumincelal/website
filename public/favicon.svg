@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Mümin Celal Pinar</title>
+  <rect width="64" height="64" fill="#0F0F0F"/>
+  <!-- "M." — Mümin Celal Pinar: heavy M with the accent square as a full stop. -->
+  <g transform="translate(-1.5 0)">
+    <path fill="#FAFAFA" d="M10 14h10.5L28 29l7.5-15H46v36h-9V30l-5.5 11h-7L19 30v20h-9z"/>
+    <rect x="49" y="42" width="8" height="8" fill="#FC7A1E"/>
+  </g>
+</svg>

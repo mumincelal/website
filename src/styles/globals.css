@@ -1,0 +1,196 @@
+/* Self-hosted variable fonts (Fontsource). Bricolage uses its optical-size + weight axes, so
+   display sizes get the tighter display cut automatically (font-optical-sizing: auto). */
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+@import "tailwindcss";
+
+/* shadcn convention: tokens on :root (light) and .dark; <html class="dark"> is the default. */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0px;
+
+  --background: #fafafa;
+  --foreground: #0f0f0f;
+  --card: #f2f2f1;
+  --card-foreground: #0f0f0f;
+  --popover: #f2f2f1;
+  --popover-foreground: #0f0f0f;
+  /* The design's single accent. */
+  --primary: #fc7a1e;
+  --primary-foreground: #fafafa;
+  --secondary: #f2f2f1;
+  --secondary-foreground: #3f403d;
+  --muted: #f2f2f1;
+  /* Labels and supporting copy ("dim"). */
+  --muted-foreground: #747572;
+  /* shadcn's "accent" is the hover surface — here the deeper card tone. */
+  --accent: #ebebea;
+  --accent-foreground: #0f0f0f;
+  --destructive: #d93a26;
+  --border: rgba(15, 15, 15, 0.14);
+  --input: rgba(15, 15, 15, 0.14);
+  --ring: #fc7a1e;
+
+  /* Design-specific steps beyond shadcn's set. */
+  --fg2: #3f403d; /* secondary body copy */
+  --faint: #9b9c99; /* faintest labels, hairline numerals */
+  --stripe: rgba(15, 15, 15, 0.1); /* placeholder sketch fills */
+
+  /* Motion travel distances, read by the presets in utils/motion.ts; shorter on small screens below. */
+  --travel-y: 26px;
+  --travel-x: 40px;
+  --travel-x-back: -40px;
+}
+
+.dark {
+  --background: #0f0f0f;
+  --foreground: #fafafa;
+  --card: #161616;
+  --card-foreground: #fafafa;
+  --popover: #161616;
+  --popover-foreground: #fafafa;
+  --primary: #fc7a1e;
+  --primary-foreground: #0f0f0f;
+  --secondary: #161616;
+  --secondary-foreground: #ababab;
+  --muted: #161616;
+  --muted-foreground: #8a8a8a;
+  --accent: #1c1c1c;
+  --accent-foreground: #fafafa;
+  --destructive: #e5533d;
+  --border: rgba(250, 250, 250, 0.12);
+  --input: rgba(250, 250, 250, 0.12);
+  --ring: #fc7a1e;
+
+  --fg2: #ababab;
+  --faint: #5a5a5a;
+  --stripe: rgba(250, 250, 250, 0.09);
+}
+
+/* Small screens: motion is opacity-led, not distance-led. */
+@media (width < 860px) {
+  :root {
+    --travel-y: 10px;
+    --travel-x: 18px;
+    --travel-x-back: -18px;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-fg2: var(--fg2);
+  --color-faint: var(--faint);
+  --color-stripe: var(--stripe);
+
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+}
+
+@theme {
+  --font-sans:
+    "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  /* Layout breakpoints from the design: phone < 680 ≤ tablet < 860 ≤ desktop. */
+  --breakpoint-sm: 680px;
+  --breakpoint-md: 860px;
+
+  /* One easing curve for the whole site. */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mono microlabels: the design's most repeated text style. */
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+@utility mono-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+/* Ghosted outline numerals. */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-border);
+}
+/* Invisible tap-area extension for small text controls (use with pointer-coarse:). */
+@utility hit-area {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -12px -4px;
+  }
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 1px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion must beat every utility's transition */
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
