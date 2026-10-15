@@ -1,1 +1,1 @@
-npx turbo build && npx turbo clean
+npx tsc -b && npx vite build && npx rimraf build
